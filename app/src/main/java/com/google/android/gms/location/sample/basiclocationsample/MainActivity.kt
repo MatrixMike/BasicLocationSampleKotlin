@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
 
                         latitudeText.text = resources
                                 .getString(R.string.latitude_label, location?.latitude)
-                        longitudeText.text = resources
+                        longitudeText.text = this.resources
                                 .getString(R.string.longitude_label, location?.longitude)
                     } else {
                         Log.w(TAG, "getLastLocation:exception", taskLocation.exception)
