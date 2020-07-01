@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        latitudeText = findViewById(R.id.latitude_text)
+        latitudeText  = findViewById(R.id.latitude_text)
         longitudeText = findViewById(R.id.longitude_text)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
