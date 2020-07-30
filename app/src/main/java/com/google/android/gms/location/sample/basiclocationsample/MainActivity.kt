@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-        val current = LocalDateTime.now()
+
         latitudeText  = findViewById(R.id.latitude_text)
         longitudeText = findViewById(R.id.longitude_text)
         datetimeStamp = findViewById(R.id.time_stamp_text)
@@ -93,12 +93,12 @@ class MainActivity : AppCompatActivity() {
                     if (taskLocation.isSuccessful && taskLocation.result != null) {
 
                         val location = taskLocation.result
-
+                        val current = LocalDateTime.now()
                         latitudeText.text = resources
                                 .getString(R.string.latitude_label, location?.latitude)
                         longitudeText.text = this.resources
                                 .getString(R.string.longitude_label, location?.longitude)
-                        datetimeStamp.text = "Date Time Stamp : "
+                        datetimeStamp.text = "Date Time Stamp : " + current
                     } else {
                         Log.w(TAG, "getLastLocation:exception", taskLocation.exception)
                         showSnackbar(R.string.no_location_detected)
