@@ -38,6 +38,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.sample.basiclocationsample.BuildConfig.APPLICATION_ID
 import com.google.android.gms.tasks.Task
+import java.time.LocalDateTime
 
 /**
  * Demonstrates use of the Location API to retrieve the last known location for a device.
@@ -54,13 +55,15 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var latitudeText: TextView
     private lateinit var longitudeText: TextView
+    private lateinit var datetimeStamp: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-
+        val current = LocalDateTime.now()
         latitudeText  = findViewById(R.id.latitude_text)
         longitudeText = findViewById(R.id.longitude_text)
+        datetimeStamp = findViewById(R.id.time_stamp_text)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
@@ -95,6 +98,7 @@ class MainActivity : AppCompatActivity() {
                                 .getString(R.string.latitude_label, location?.latitude)
                         longitudeText.text = this.resources
                                 .getString(R.string.longitude_label, location?.longitude)
+                        datetimeStamp.text = "Date Time Stamp : "
                     } else {
                         Log.w(TAG, "getLastLocation:exception", taskLocation.exception)
                         showSnackbar(R.string.no_location_detected)

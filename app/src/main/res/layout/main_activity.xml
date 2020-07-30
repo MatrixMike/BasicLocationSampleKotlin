@@ -43,4 +43,14 @@
         android:layout_marginTop="@dimen/text_margin"
         android:textIsSelectable="true"
         android:textSize="@dimen/lat_long_text_size" />
+
+    <TextView
+        android:id="@+id/time_stamp_text"
+        android:layout_width="match_parent"
+        android:layout_height="103dp"
+        android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginLeft="@dimen/margin_start"
+        android:layout_marginTop="@dimen/text_margin"
+        android:textIsSelectable="true"
+        android:textSize="@dimen/lat_long_text_size" />
 </LinearLayout>
