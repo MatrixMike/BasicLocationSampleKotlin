@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
                     if (taskLocation.isSuccessful && taskLocation.result != null) {
 
                         val location = taskLocation.result
-                        val current = LocalDateTime.now()
+                        val current = LocalDateTime.now()     // was .now()
                         latitudeText.text = resources
                                 .getString(R.string.latitude_label, location?.latitude)
                         longitudeText.text = this.resources

@@ -18,7 +18,7 @@
 <resources>
     <string name="app_name">Basic Location Sample</string>
      <string name="latitude_label">Latitude:   %.3f</string>
-    <string name="longitude_label">Longitude:  %.3f</string>
+    <string name="longitude_label"><u>Longitude:</u>  %.3f</string>
     <string name="no_location_detected">
         No location detected. Make sure location is enabled on the device.
     </string>
