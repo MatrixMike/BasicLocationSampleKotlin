@@ -16,7 +16,7 @@
 -->
 
 <resources>
-    <string name="app_name">Basic Location Sample</string>
+    <string name="app_name">Location and Time</string>
      <string name="latitude_label">Latitude:   %.3f</string>
     <string name="longitude_label"><u>Longitude:</u>  %.3f</string>
     <string name="no_location_detected">
