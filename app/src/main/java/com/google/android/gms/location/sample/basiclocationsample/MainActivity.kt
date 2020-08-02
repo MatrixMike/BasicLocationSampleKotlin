@@ -22,6 +22,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.location.Location
+//import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -38,7 +39,9 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.sample.basiclocationsample.BuildConfig.APPLICATION_ID
 import com.google.android.gms.tasks.Task
+//Location.distanceBetween
 import java.time.LocalDateTime
+import kotlin.Double as KotlinDouble
 
 /**
  * Demonstrates use of the Location API to retrieve the last known location for a device.
@@ -99,6 +102,9 @@ class MainActivity : AppCompatActivity() {
                         longitudeText.text = this.resources
                                 .getString(R.string.longitude_label, location?.longitude)
                         datetimeStamp.text = "Date Time Stamp : " + current
+//                        var   ans1: Double[2.0,2.0]
+                        var ans1 = floatArrayOf(1.1f, 2.2f)
+                        var distance2: Unit = Location.distanceBetween(-37.892, 144.775, -37.874, 144.785, ans1)
                     } else {
                         Log.w(TAG, "getLastLocation:exception", taskLocation.exception)
                         showSnackbar(R.string.no_location_detected)
