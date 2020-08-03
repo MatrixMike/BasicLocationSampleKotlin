@@ -29,4 +29,5 @@
         Location permission is needed for core functionality
     </string>
     <string name="settings">Settings</string>
+    <string name="distance_label">Distance from home %s</string>
 </resources>

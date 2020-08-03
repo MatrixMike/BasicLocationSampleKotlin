@@ -16,32 +16,29 @@
 
 package com.google.android.gms.location.sample.basiclocationsample
 
+//import android.location.Location
+
+//Location.distanceBetween
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.location.Location
-//import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.snackbar.Snackbar.LENGTH_INDEFINITE
-import com.google.android.material.snackbar.Snackbar.LENGTH_LONG
-import androidx.core.app.ActivityCompat
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.sample.basiclocationsample.BuildConfig.APPLICATION_ID
-import com.google.android.gms.tasks.Task
-//Location.distanceBetween
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.snackbar.Snackbar.LENGTH_INDEFINITE
 import java.time.LocalDateTime
-import kotlin.Double as KotlinDouble
 
 /**
  * Demonstrates use of the Location API to retrieve the last known location for a device.
@@ -59,6 +56,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var latitudeText: TextView
     private lateinit var longitudeText: TextView
     private lateinit var datetimeStamp: TextView
+    private lateinit var distanceText: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         latitudeText  = findViewById(R.id.latitude_text)
         longitudeText = findViewById(R.id.longitude_text)
         datetimeStamp = findViewById(R.id.time_stamp_text)
-
+        //       distanceText  = findViewById(R.id.dist_text)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
 
@@ -104,7 +102,8 @@ class MainActivity : AppCompatActivity() {
                         datetimeStamp.text = "Date Time Stamp : " + current
 //                        var   ans1: Double[2.0,2.0]
                         var ans1 = floatArrayOf(1.1f, 2.2f)
-                        var distance2: Unit = Location.distanceBetween(-37.892, 144.775, -37.874, 144.785, ans1)
+                        Location.distanceBetween(-37.892, 144.775,
+                                -37.874, 144.785, ans1)
                     } else {
                         Log.w(TAG, "getLastLocation:exception", taskLocation.exception)
                         showSnackbar(R.string.no_location_detected)
