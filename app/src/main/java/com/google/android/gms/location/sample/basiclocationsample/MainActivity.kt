@@ -16,32 +16,29 @@
 
 package com.google.android.gms.location.sample.basiclocationsample
 
+//import android.location.Location
+
+//Location.distanceBetween
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.location.Location
-//import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.snackbar.Snackbar.LENGTH_INDEFINITE
-import com.google.android.material.snackbar.Snackbar.LENGTH_LONG
-import androidx.core.app.ActivityCompat
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.sample.basiclocationsample.BuildConfig.APPLICATION_ID
-import com.google.android.gms.tasks.Task
-//Location.distanceBetween
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.snackbar.Snackbar.LENGTH_INDEFINITE
 import java.time.LocalDateTime
-import kotlin.Double as KotlinDouble
 
 /**
  * Demonstrates use of the Location API to retrieve the last known location for a device.
