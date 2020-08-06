@@ -53,4 +53,11 @@
         android:layout_marginTop="@dimen/text_margin"
         android:textIsSelectable="true"
         android:textSize="@dimen/lat_long_text_size" />
+
+    <TextView
+        android:id="@+id/distance_text"
+        android:layout_width="326dp"
+        android:layout_height="82dp"
+        android:text="TextView" />
+
 </LinearLayout>

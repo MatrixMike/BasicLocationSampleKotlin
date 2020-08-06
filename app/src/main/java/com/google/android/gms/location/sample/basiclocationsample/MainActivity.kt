@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         latitudeText  = findViewById(R.id.latitude_text)
         longitudeText = findViewById(R.id.longitude_text)
         datetimeStamp = findViewById(R.id.time_stamp_text)
-        //       distanceText  = findViewById(R.id.dist_text)
+        distanceText  = findViewById(R.id.distance_text)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
 
@@ -102,9 +102,12 @@ class MainActivity : AppCompatActivity() {
                         datetimeStamp.text = "Date Time Stamp : " + current
 //                        var   ans1: Double[2.0,2.0]
                         var ans1 = floatArrayOf(1.1f, 2.2f)
-                        Location.distanceBetween(-37.892, 144.775,
-                                -37.874, 144.785, ans1)
-                    } else {
+                        location?.latitude?.let {
+                            Location.distanceBetween(-37.892, 144.775,
+                                    it, location?.longitude, ans1)
+                        }
+                        distanceText.text = "Distance : " + ans1[0] +" metres"
+                     } else {
                         Log.w(TAG, "getLastLocation:exception", taskLocation.exception)
                         showSnackbar(R.string.no_location_detected)
                     }
