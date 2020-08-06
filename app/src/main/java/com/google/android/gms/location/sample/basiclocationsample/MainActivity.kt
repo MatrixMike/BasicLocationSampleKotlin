@@ -92,13 +92,16 @@ class MainActivity : AppCompatActivity() {
         fusedLocationClient.lastLocation
                 .addOnCompleteListener { taskLocation ->
                     if (taskLocation.isSuccessful && taskLocation.result != null) {
-
+// https://developers.google.com/android/reference/com/google/android/gms/location/LocationResult
                         val location = taskLocation.result
                         val current = LocalDateTime.now()     // was .now()
                         latitudeText.text = resources
                                 .getString(R.string.latitude_label, location?.latitude)
                         longitudeText.text = this.resources
-                                .getString(R.string.longitude_label, location?.longitude)
+                                .getString(
+                                        R.string.longitude_label,
+                                        location?.longitude
+                                )
                         datetimeStamp.text = "Date Time Stamp : " + current
 //                        var   ans1: Double[2.0,2.0]
                         var ans1 = floatArrayOf(1.1f, 2.2f)
