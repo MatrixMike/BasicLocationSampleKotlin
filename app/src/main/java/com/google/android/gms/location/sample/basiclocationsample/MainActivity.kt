@@ -31,6 +31,7 @@ import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -94,7 +95,7 @@ class MainActivity : AppCompatActivity() {
                     if (taskLocation.isSuccessful && taskLocation.result != null) {
 // https://developers.google.com/android/reference/com/google/android/gms/location/LocationResult
                         val location = taskLocation.result
-                        val current = LocalDateTime.now()     // was .now()
+                 //       val current = LocalDateTime.now()     // was .now()
                         latitudeText.text = resources
                                 .getString(R.string.latitude_label, location?.latitude)
                         longitudeText.text = this.resources
@@ -102,7 +103,7 @@ class MainActivity : AppCompatActivity() {
                                         R.string.longitude_label,
                                         location?.longitude
                                 )
-                        datetimeStamp.text = "Date Time Stamp : " + current
+                 //       datetimeStamp.text = "Date Time Stamp : " + current
 //                        var   ans1: Double[2.0,2.0]
                         var ans1 = floatArrayOf(1.1f, 2.2f)
                         location?.latitude?.let {
@@ -110,7 +111,10 @@ class MainActivity : AppCompatActivity() {
                                     it, location?.longitude, ans1)
                         }
                         distanceText.text = "Distance : " + ans1[0] +" metres"
-                     } else {
+/*                        Toast.makeText(MainActivity.this,  // was .this
+                                String.valueOf(ans1[0]),
+                                Toast.LENGTH_LONG).show()*/
+                    } else {
                         Log.w(TAG, "getLastLocation:exception", taskLocation.exception)
                         showSnackbar(R.string.no_location_detected)
                     }
@@ -136,7 +140,7 @@ class MainActivity : AppCompatActivity() {
         }
         snackbar.show()
     }
-
+// https://medium.com/@droidbyme/get-current-location-using-fusedlocationproviderclient-in-android-cb7ebf5ab88e
     /**
      * Return the current state of the permissions needed.
      */

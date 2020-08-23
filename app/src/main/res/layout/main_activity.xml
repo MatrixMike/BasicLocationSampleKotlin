@@ -29,20 +29,24 @@
         android:id="@+id/latitude_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_start"
         android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginLeft="@dimen/margin_start"
+        android:textColor="#198EEC"
         android:textIsSelectable="true"
-        android:textSize="@dimen/lat_long_text_size" />
+        android:textSize="@dimen/lat_long_text_size"
+        android:typeface="serif" />
 
     <TextView
         android:id="@+id/longitude_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_start"
         android:layout_marginStart="@dimen/margin_start"
+        android:layout_marginLeft="@dimen/margin_start"
         android:layout_marginTop="@dimen/text_margin"
+        android:textColor="#E31414"
         android:textIsSelectable="true"
-        android:textSize="@dimen/lat_long_text_size" />
+        android:textSize="@dimen/lat_long_text_size"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/time_stamp_text"
@@ -56,7 +60,7 @@
 
     <TextView
         android:id="@+id/distance_text"
-        android:layout_width="326dp"
+        android:layout_width="match_parent"
         android:layout_height="82dp"
         android:text="TextView" />
 
