@@ -14,19 +14,21 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-
 <resources>
-    <string name="app_name">Location and Time</string>
-     <string name="latitude_label">Latitude:   %.3f</string>
-    <string name="longitude_label"><u>Longitude:</u>  %.3f</string>
-    <string name="no_location_detected">
-        No location detected. Make sure location is enabled on the device.
+    <string name="app_name">Location and Time KT</string>
+    <string name="latitude_label">PB Latitude   :  %.4f</string>
+    <string name="longitude_label">PB Longitude :  %.4f</string>
+    <!--
+    // was <u>Longitude:</u>  %.3f
+-->
+    <string name="no_location_detected" translatable="false">
+        No location detected. Make sure location is enabled on the device. MH
     </string>
     <string name="permission_denied_explanation">
-        Permission was denied, but is needed for core functionality.
+        Permission was denied, but is needed for core functionality. MH
     </string>
     <string name="permission_rationale">
-        Location permission is needed for core functionality
+        Location permission is needed for core functionality MH
     </string>
     <string name="settings">Settings</string>
     <string name="distance_label">Distance from home %s</string>

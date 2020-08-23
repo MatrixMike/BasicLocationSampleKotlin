@@ -103,11 +103,16 @@ class MainActivity : AppCompatActivity() {
                                         location?.longitude
                                 )
                         datetimeStamp.text = "Date Time Stamp : " + current
-//                        var   ans1: Double[2.0,2.0]
+
                         var ans1 = floatArrayOf(1.1f, 2.2f)
                         location?.latitude?.let {
-                            Location.distanceBetween(-37.892, 144.775,
-                                    it, location?.longitude, ans1)
+                            Location.distanceBetween(
+                                    -37.892,
+                                    144.775,
+                                    location?.latitude,
+                                    location?.longitude,
+                                    ans1
+                            )
                         }
                         distanceText.text = "Distance : " + ans1[0] +" metres"
                      } else {
