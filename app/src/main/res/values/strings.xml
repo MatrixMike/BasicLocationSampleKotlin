@@ -30,4 +30,6 @@
     </string>
     <string name="settings">Settings</string>
     <string name="distance_label">Distance from home %s</string>
+    <string name="textview">TextView</string>
+    <string name="switch1">Switch</string>
 </resources>

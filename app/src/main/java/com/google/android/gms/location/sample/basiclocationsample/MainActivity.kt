@@ -146,7 +146,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun checkPermissions() =
             ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED
-
+    //private fun ex1 () = run { new }
     private fun startLocationPermissionRequest() {
         ActivityCompat.requestPermissions(this, arrayOf(ACCESS_COARSE_LOCATION),
                 REQUEST_PERMISSIONS_REQUEST_CODE)
