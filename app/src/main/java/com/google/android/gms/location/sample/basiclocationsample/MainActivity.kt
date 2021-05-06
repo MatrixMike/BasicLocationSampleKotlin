@@ -38,7 +38,6 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.sample.basiclocationsample.BuildConfig.APPLICATION_ID
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.snackbar.Snackbar.LENGTH_INDEFINITE
-import java.time.LocalDateTime
 
 /**
  * Demonstrates use of the Location API to retrieve the last known location for a device.
