@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
                                 )
                         datetimeStamp.text = "Date Time Stamp : " + current
 
-                        var ans1 = floatArrayOf(1.1f, 2.2f)
+                        val ans1 = floatArrayOf(1.1f, 2.2f)
                         location?.latitude?.let {
                             Location.distanceBetween(
                                     -37.892,
