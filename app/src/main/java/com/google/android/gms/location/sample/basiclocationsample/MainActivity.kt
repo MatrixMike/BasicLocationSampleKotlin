@@ -38,6 +38,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.sample.basiclocationsample.BuildConfig.APPLICATION_ID
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.snackbar.Snackbar.LENGTH_INDEFINITE
+import java.time.LocalDateTime
 
 /**
  * Demonstrates use of the Location API to retrieve the last known location for a device.
@@ -61,10 +62,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        latitudeText  = findViewById(R.id.latitude_text)
+        latitudeText = findViewById(R.id.latitude_text)
         longitudeText = findViewById(R.id.longitude_text)
         datetimeStamp = findViewById(R.id.time_stamp_text)
-        distanceText  = findViewById(R.id.distance_text)
+        distanceText = findViewById(R.id.distance_text)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
     }
 
@@ -93,7 +94,7 @@ class MainActivity : AppCompatActivity() {
                     if (taskLocation.isSuccessful && taskLocation.result != null) {
 // https://developers.google.com/android/reference/com/google/android/gms/location/LocationResult
                         val location = taskLocation.result
-                        val current = LocalDateTime.now()     // was .now()
+                        val current = LocalDateTime.now()    // was .now()
                         latitudeText.text = resources
                                 .getString(R.string.latitude_label, location?.latitude)
                         longitudeText.text = this.resources
@@ -113,8 +114,8 @@ class MainActivity : AppCompatActivity() {
                                     ans1
                             )
                         }
-                        distanceText.text = "Distance : " + ans1[0] +" metres"
-                     } else {
+                        distanceText.text = "Distance : " + ans1[0] + " metres"
+                    } else {
                         Log.w(TAG, "getLastLocation:exception", taskLocation.exception)
                         showSnackbar(R.string.no_location_detected)
                     }
@@ -129,9 +130,9 @@ class MainActivity : AppCompatActivity() {
      * @param listener The listener associated with the Snackbar action.
      */
     private fun showSnackbar(
-        snackStrId: Int,
-        actionStrId: Int = 0,
-        listener: View.OnClickListener? = null
+            snackStrId: Int,
+            actionStrId: Int = 0,
+            listener: View.OnClickListener? = null
     ) {
         val snackbar = Snackbar.make(findViewById(android.R.id.content), getString(snackStrId),
                 LENGTH_INDEFINITE)
@@ -175,9 +176,9 @@ class MainActivity : AppCompatActivity() {
      * Callback received when a permissions request has been completed.
      */
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
+            requestCode: Int,
+            permissions: Array<String>,
+            grantResults: IntArray
     ) {
         Log.i(TAG, "onRequestPermissionResult")
         if (requestCode == REQUEST_PERMISSIONS_REQUEST_CODE) {
