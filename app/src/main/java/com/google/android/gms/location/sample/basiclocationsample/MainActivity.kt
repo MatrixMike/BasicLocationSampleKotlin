@@ -96,21 +96,24 @@ class MainActivity : AppCompatActivity() {
                         val location = taskLocation.result
                         val current = LocalDateTime.now()    // was .now()
                         latitudeText.text = resources
-                                .getString(R.string.latitude_label, location?.latitude)
+                                // TODO make the following two lines display evenly
+                                .getString(
+                                        R.string.latitude_label,
+                                        location?.latitude)
                         longitudeText.text = this.resources
                                 .getString(
                                         R.string.longitude_label,
                                         location?.longitude
                                 )
-                        datetimeStamp.text = "Date Time Stamp : " + current
+                        datetimeStamp.text = "Date Time Stamp : $current"
 
                         val ans1 = floatArrayOf(1.1f, 2.2f)
                         location?.latitude?.let {
                             Location.distanceBetween(
                                     -37.892,
                                     144.775,
-                                    location?.latitude,
-                                    location?.longitude,
+                                    location.latitude,
+                                    location.longitude,
                                     ans1
                             )
                         }
@@ -158,10 +161,10 @@ class MainActivity : AppCompatActivity() {
             // Provide an additional rationale to the user. This would happen if the user denied the
             // request previously, but didn't check the "Don't ask again" checkbox.
             Log.i(TAG, "Displaying permission rationale to provide additional context.")
-            showSnackbar(R.string.permission_rationale, android.R.string.ok, View.OnClickListener {
+            showSnackbar(R.string.permission_rationale, android.R.string.ok) {
                 // Request permission
                 startLocationPermissionRequest()
-            })
+            }
 
         } else {
             // Request permission. It's possible this can be auto answered if device policy

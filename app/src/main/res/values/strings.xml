@@ -16,8 +16,8 @@
 -->
 <resources>
     <string name="app_name">Location and Time KT</string>
-    <string name="latitude_label">PB Latitude   :  %.4f</string>
-    <string name="longitude_label">PB Longitude :  %.4f</string>
+     <string name="latitude_label">PB Latitude   :  %-7.4f</string>
+    <string name="longitude_label">PB Longitude  :  %-7.4f</string>
     <!--
     // was <u>Longitude:</u>  %.3f
 -->
