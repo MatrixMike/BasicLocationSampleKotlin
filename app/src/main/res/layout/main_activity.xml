@@ -60,7 +60,7 @@
         android:id="@+id/distance_text"
         android:layout_width="match_parent"
         android:layout_height="82dp"
-        android:text="TextView"
+        android:text="@string/textview1"
         android:textColorLink="#CF1D1D"
         android:textIsSelectable="true"
         android:typeface="monospace" />

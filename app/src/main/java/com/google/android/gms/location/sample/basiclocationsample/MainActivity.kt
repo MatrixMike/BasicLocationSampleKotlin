@@ -57,6 +57,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var longitudeText: TextView
     private lateinit var datetimeStamp: TextView
     private lateinit var distanceText: TextView
+    val  startLat = -37.892   // TODO - set radial centre
+    val  startLong = 144.775    // set these values into an array
+    // such that the elements can be used sequentially that can be used to compare with radial centre
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +70,13 @@ class MainActivity : AppCompatActivity() {
         datetimeStamp = findViewById(R.id.time_stamp_text)
         distanceText = findViewById(R.id.distance_text)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        val array = arrayOf(1, 2, 3, 4)
+//	array[x] = array[x] * 2 // no actual calls to get() and set() generated
+        for (x in array) { // no iterator created
+            print(x)
+        }
+/*        val latitudes = doubleArrayOf(startLat, 1.2, 1.3)
+        val longitudes = doubleArrayOf(startLong, 1.2, 1.3)*/
     }
 
     override fun onStart() {
@@ -89,35 +99,34 @@ class MainActivity : AppCompatActivity() {
      */
     @SuppressLint("MissingPermission")
     private fun getLastLocation() {
+        val latitudes = doubleArrayOf(startLat, 1.2, 1.3)
+        val longitudes = doubleArrayOf(startLong, 1.2, 1.3)
         fusedLocationClient.lastLocation
                 .addOnCompleteListener { taskLocation ->
                     if (taskLocation.isSuccessful && taskLocation.result != null) {
 // https://developers.google.com/android/reference/com/google/android/gms/location/LocationResult
                         val location = taskLocation.result
                         val current = LocalDateTime.now()    // was .now()
+                        // TODO make the following two lines display evenly
                         latitudeText.text = resources
-                                // TODO make the following two lines display evenly
-                                .getString(
-                                        R.string.latitude_label,
-                                        location?.latitude)
+                                .getString(R.string.latitude_label, location?.latitude)
                         longitudeText.text = this.resources
-                                .getString(
-                                        R.string.longitude_label,
-                                        location?.longitude
-                                )
+                                .getString(R.string.longitude_label, location?.longitude)
                         datetimeStamp.text = "Date Time Stamp : $current"
 
                         val ans1 = floatArrayOf(1.1f, 2.2f)
                         location?.latitude?.let {
                             Location.distanceBetween(
-                                    -37.892,
-                                    144.775,
-                                    location.latitude,
-                                    location.longitude,
-                                    ans1
+                                //TODO compare current location with radial centre
+                                latitudes[1],  //    Latitudes[0],// TODO was startLat,
+                                longitudes[1], //    startLong,
+                                location.latitude,
+                                location.longitude,
+                                ans1
                             )
                         }
                         distanceText.text = "Distance : " + ans1[0] + " metres"
+                  // TODO       Log.i(TAG, distanceText.text as String)
                     } else {
                         Log.w(TAG, "getLastLocation:exception", taskLocation.exception)
                         showSnackbar(R.string.no_location_detected)
@@ -143,6 +152,7 @@ class MainActivity : AppCompatActivity() {
             snackbar.setAction(getString(actionStrId), listener)
         }
         snackbar.show()
+        Log.i(TAG, "after Snackbar")
     }
 
     /**
