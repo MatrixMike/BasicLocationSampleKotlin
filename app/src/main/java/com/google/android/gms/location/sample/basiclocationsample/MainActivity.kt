@@ -99,8 +99,9 @@ class MainActivity : AppCompatActivity() {
      */
     @SuppressLint("MissingPermission")
     private fun getLastLocation() {
-        val latitudes = doubleArrayOf(startLat, 1.2, 1.3)
-        val longitudes = doubleArrayOf(startLong, 1.2, 1.3)
+        val latitudes = doubleArrayOf(1.1,startLat, 1.2, 1.3)
+        val longitudes = doubleArrayOf(1.1,startLong, 1.2, 1.3)
+        val repeaterStrings = arrayOf("one","two","three")
         fusedLocationClient.lastLocation
                 .addOnCompleteListener { taskLocation ->
                     if (taskLocation.isSuccessful && taskLocation.result != null) {
@@ -125,7 +126,7 @@ class MainActivity : AppCompatActivity() {
                                 ans1
                             )
                         }
-                        distanceText.text = "Distance : " + ans1[0] + " metres"
+                        distanceText.text = "Distance : " + ans1[0] + repeaterStrings[1] +" metres \nDistance : " + ans1[0] + repeaterStrings[2]+ " metres\n"
                   // TODO       Log.i(TAG, distanceText.text as String)
                     } else {
                         Log.w(TAG, "getLastLocation:exception", taskLocation.exception)
