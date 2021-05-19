@@ -1,4 +1,4 @@
-/*
+ /*
   Copyright 2017 Google Inc. All Rights Reserved.
   <p>
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -36,8 +36,8 @@ import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.sample.basiclocationsample.BuildConfig.APPLICATION_ID
+import com.google.android.gms.location.sample.basiclocationsample.Repeater.createRepeaterList
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.snackbar.Snackbar.LENGTH_INDEFINITE
 import com.google.android.material.snackbar.Snackbar.LENGTH_LONG
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -59,10 +59,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var longitudeText: TextView
     private lateinit var datetimeStamp: TextView
     private lateinit var distanceText: TextView
-    val  startLat = -37.892   // TODO - set radial centre
-    val  startLong = 144.775    // set these values into an array
-    val  vk3rglLat = -37.8865371   // TODO - set radial centre
-    val  vk3rglLong = 144.2694973    // set these values into an array  Mt. Anakie
+    val startLat = -37.892   // TODO - set radial centre
+    val startLong = 144.775    // set these values into an array
+    val vk3rglLat = -37.8865371   // TODO - set radial centre
+    val vk3rglLong = 144.2694973    // set these values into an array  Mt. Anakie
     // such that the elements can be used sequentially that can be used to compare with radial centre
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -79,6 +79,9 @@ class MainActivity : AppCompatActivity() {
         for (x in array) { // no iterator created
             print(x)
         }
+        print(array[2])
+        val javaObj = createRepeaterList()
+        println(javaObj.size)
 /*        val latitudes = doubleArrayOf(startLat, 1.2, 1.3)
         val longitudes = doubleArrayOf(startLong, 1.2, 1.3)*/
     }
@@ -103,43 +106,44 @@ class MainActivity : AppCompatActivity() {
      */
     @SuppressLint("MissingPermission")
     private fun getLastLocation() {
-        val latitudes = doubleArrayOf(1.1,startLat, vk3rglLat, 1.3)
-        val longitudes = doubleArrayOf(1.1,startLong, vk3rglLong, 1.3)
-        val repeaterStrings = arrayOf("one","two","three")
+        val latitudes = doubleArrayOf(1.1, startLat, vk3rglLat, 1.3)
+        val longitudes = doubleArrayOf(1.1, startLong, vk3rglLong, 1.3)
+        val repeaterStrings = arrayOf("one", "two", "three")
         fusedLocationClient.lastLocation
-                .addOnCompleteListener { taskLocation ->
-                    if (taskLocation.isSuccessful && taskLocation.result != null) {
+            .addOnCompleteListener { taskLocation ->
+                if (taskLocation.isSuccessful && taskLocation.result != null) {
 // https://developers.google.com/android/reference/com/google/android/gms/location/LocationResult
-                        val location = taskLocation.result
-                        val current = LocalDateTime.now()    // was .now()
-                        val formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm")
-                        val formatted = current.format(formatter)
-                        // TODO make the following two lines display evenly
-                        latitudeText.text = resources
-                                .getString(R.string.latitude_label, location?.latitude)
-                        longitudeText.text = this.resources
-                                .getString(R.string.longitude_label, location?.longitude)
-                //        datetimeStamp.text = "Date Time Stamp : $current"
-                        datetimeStamp.text = "Date Time Stamp : $formatted"
-                        val ans1 = floatArrayOf(1.1f, 2.2f)
-                        location?.latitude?.let {
-                            Location.distanceBetween(
-                                //TODO compare current location with radial centre
-                                latitudes[2],  //    Latitudes[0],// TODO was startLat,
-                                longitudes[2], //    startLong,
-                                location.latitude,
-                                location.longitude,
-                                ans1
-                            )
-                        }
-                        distanceText.text = "Distance : " + ans1[0] +" " + repeaterStrings[1] +" metres \nDistance : " + ans1[0] +" "+ repeaterStrings[2]+ " metres\n"
-                  // TODO       Log.i(TAG, distanceText.text as String)
-                        showSnackbar(R.string.permission_rationale, android.R.string.ok)  // TODO fix
-                    } else {
-                        Log.w(TAG, "getLastLocation:exception", taskLocation.exception)
-                        showSnackbar(R.string.no_location_detected)
+                    val location = taskLocation.result
+                    val current = LocalDateTime.now()    // was .now()
+                    val formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm")
+                    val formatted = current.format(formatter)
+                    // TODO make the following two lines display evenly
+                    latitudeText.text = resources
+                        .getString(R.string.latitude_label, location?.latitude)
+                    longitudeText.text = this.resources
+                        .getString(R.string.longitude_label, location?.longitude)
+                    //        datetimeStamp.text = "Date Time Stamp : $current"
+                    datetimeStamp.text = "Date Time Stamp : $formatted"
+                    val ans1 = floatArrayOf(1.1f, 2.2f)
+                    location?.latitude?.let {
+                        Location.distanceBetween(
+                            //TODO compare current location with radial centre
+                            latitudes[2],  //    Latitudes[0],// TODO was startLat,
+                            longitudes[2], //    startLong,
+                            location.latitude,
+                            location.longitude,
+                            ans1
+                        )
                     }
+                    distanceText.text =
+                        "Distance : " + ans1[0] + " " + repeaterStrings[1] + " metres \nDistance : " + ans1[0] + " " + repeaterStrings[2] + " metres\n"
+                    // TODO       Log.i(TAG, distanceText.text as String)
+                    showSnackbar(R.string.permission_rationale, android.R.string.ok)  // TODO fix
+                } else {
+                    Log.w(TAG, "getLastLocation:exception", taskLocation.exception)
+                    showSnackbar(R.string.no_location_detected)
                 }
+            }
     }
 
     /**
@@ -150,12 +154,14 @@ class MainActivity : AppCompatActivity() {
      * @param listener The listener associated with the Snackbar action.
      */
     private fun showSnackbar(
-            snackStrId: Int,
-            actionStrId: Int = 0,
-            listener: View.OnClickListener? = null
+        snackStrId: Int,
+        actionStrId: Int = 0,
+        listener: View.OnClickListener? = null
     ) {
-        val snackbar = Snackbar.make(findViewById(android.R.id.content), getString(snackStrId),
-                LENGTH_LONG)  // TODO was LENGTH_INDEFINITE
+        val snackbar = Snackbar.make(
+            findViewById(android.R.id.content), getString(snackStrId),
+            LENGTH_LONG
+        )  // TODO was LENGTH_INDEFINITE
         if (actionStrId != 0 && listener != null) {
             snackbar.setAction(getString(actionStrId), listener)
         }
@@ -167,11 +173,13 @@ class MainActivity : AppCompatActivity() {
      * Return the current state of the permissions needed.
      */
     private fun checkPermissions() =
-            ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED
+        ActivityCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED
 
     private fun startLocationPermissionRequest() {
-        ActivityCompat.requestPermissions(this, arrayOf(ACCESS_COARSE_LOCATION),
-                REQUEST_PERMISSIONS_REQUEST_CODE)
+        ActivityCompat.requestPermissions(
+            this, arrayOf(ACCESS_COARSE_LOCATION),
+            REQUEST_PERMISSIONS_REQUEST_CODE
+        )
     }
 
     private fun requestPermissions() {
@@ -197,9 +205,9 @@ class MainActivity : AppCompatActivity() {
      * Callback received when a permissions request has been completed.
      */
     override fun onRequestPermissionsResult(
-            requestCode: Int,
-            permissions: Array<String>,
-            grantResults: IntArray
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
     ) {
         Log.i(TAG, "onRequestPermissionResult")
         if (requestCode == REQUEST_PERMISSIONS_REQUEST_CODE) {
@@ -224,15 +232,15 @@ class MainActivity : AppCompatActivity() {
                 // touches or interactions which have required permissions.
                 else -> {
                     showSnackbar(R.string.permission_denied_explanation, R.string.settings,
-                            View.OnClickListener {
-                                // Build intent that displays the App settings screen.
-                                val intent = Intent().apply {
-                                    action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-                                    data = Uri.fromParts("package", APPLICATION_ID, null)
-                                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                                }
-                                startActivity(intent)
-                            })
+                        View.OnClickListener {
+                            // Build intent that displays the App settings screen.
+                            val intent = Intent().apply {
+                                action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                                data = Uri.fromParts("package", APPLICATION_ID, null)
+                                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                            }
+                            startActivity(intent)
+                        })
                 }
             }
         }
