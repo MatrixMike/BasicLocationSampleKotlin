@@ -39,6 +39,7 @@ import com.google.android.gms.location.sample.basiclocationsample.BuildConfig.AP
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.snackbar.Snackbar.LENGTH_INDEFINITE
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 /**
  * Demonstrates use of the Location API to retrieve the last known location for a device.
@@ -108,13 +109,15 @@ class MainActivity : AppCompatActivity() {
 // https://developers.google.com/android/reference/com/google/android/gms/location/LocationResult
                         val location = taskLocation.result
                         val current = LocalDateTime.now()    // was .now()
+                        val formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm")
+                        val formatted = current.format(formatter)
                         // TODO make the following two lines display evenly
                         latitudeText.text = resources
                                 .getString(R.string.latitude_label, location?.latitude)
                         longitudeText.text = this.resources
                                 .getString(R.string.longitude_label, location?.longitude)
-                        datetimeStamp.text = "Date Time Stamp : $current"
-
+                //        datetimeStamp.text = "Date Time Stamp : $current"
+                        datetimeStamp.text = "Date Time Stamp : $formatted"
                         val ans1 = floatArrayOf(1.1f, 2.2f)
                         location?.latitude?.let {
                             Location.distanceBetween(
