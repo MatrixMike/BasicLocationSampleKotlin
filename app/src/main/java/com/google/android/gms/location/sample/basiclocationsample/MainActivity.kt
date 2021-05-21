@@ -38,6 +38,7 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.sample.basiclocationsample.BuildConfig.APPLICATION_ID
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.snackbar.Snackbar.LENGTH_INDEFINITE
+import com.google.android.material.snackbar.Snackbar.LENGTH_LONG
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -60,6 +61,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var distanceText: TextView
     val  startLat = -37.892   // TODO - set radial centre
     val  startLong = 144.775    // set these values into an array
+    val  vk3rglLat = -37.8865371   // TODO - set radial centre
+    val  vk3rglLong = 144.2694973    // set these values into an array  Mt. Anakie
     // such that the elements can be used sequentially that can be used to compare with radial centre
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,8 +103,8 @@ class MainActivity : AppCompatActivity() {
      */
     @SuppressLint("MissingPermission")
     private fun getLastLocation() {
-        val latitudes = doubleArrayOf(1.1,startLat, 1.2, 1.3)
-        val longitudes = doubleArrayOf(1.1,startLong, 1.2, 1.3)
+        val latitudes = doubleArrayOf(1.1,startLat, vk3rglLat, 1.3)
+        val longitudes = doubleArrayOf(1.1,startLong, vk3rglLong, 1.3)
         val repeaterStrings = arrayOf("one","two","three")
         fusedLocationClient.lastLocation
                 .addOnCompleteListener { taskLocation ->
@@ -122,15 +125,16 @@ class MainActivity : AppCompatActivity() {
                         location?.latitude?.let {
                             Location.distanceBetween(
                                 //TODO compare current location with radial centre
-                                latitudes[1],  //    Latitudes[0],// TODO was startLat,
-                                longitudes[1], //    startLong,
+                                latitudes[2],  //    Latitudes[0],// TODO was startLat,
+                                longitudes[2], //    startLong,
                                 location.latitude,
                                 location.longitude,
                                 ans1
                             )
                         }
-                        distanceText.text = "Distance : " + ans1[0] + repeaterStrings[1] +" metres \nDistance : " + ans1[0] + repeaterStrings[2]+ " metres\n"
+                        distanceText.text = "Distance : " + ans1[0] +" " + repeaterStrings[1] +" metres \nDistance : " + ans1[0] +" "+ repeaterStrings[2]+ " metres\n"
                   // TODO       Log.i(TAG, distanceText.text as String)
+                        showSnackbar(R.string.permission_rationale, android.R.string.ok)  // TODO fix
                     } else {
                         Log.w(TAG, "getLastLocation:exception", taskLocation.exception)
                         showSnackbar(R.string.no_location_detected)
@@ -151,7 +155,7 @@ class MainActivity : AppCompatActivity() {
             listener: View.OnClickListener? = null
     ) {
         val snackbar = Snackbar.make(findViewById(android.R.id.content), getString(snackStrId),
-                LENGTH_INDEFINITE)
+                LENGTH_LONG)  // TODO was LENGTH_INDEFINITE
         if (actionStrId != 0 && listener != null) {
             snackbar.setAction(getString(actionStrId), listener)
         }
