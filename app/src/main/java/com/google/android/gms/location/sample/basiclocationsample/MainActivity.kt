@@ -24,6 +24,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PERMISSION_GRANTED
+import android.graphics.Color
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
@@ -108,7 +109,7 @@ class MainActivity : AppCompatActivity() {
     private fun getLastLocation() {
         val latitudes = doubleArrayOf(1.1, startLat, vk3rglLat, 1.3)
         val longitudes = doubleArrayOf(1.1, startLong, vk3rglLong, 1.3)
-        val repeaterStrings = arrayOf("one", "two", "three")
+        val repeaterStrings = arrayOf("1", "2", "3")
         fusedLocationClient.lastLocation
             .addOnCompleteListener { taskLocation ->
                 if (taskLocation.isSuccessful && taskLocation.result != null) {
@@ -165,6 +166,8 @@ class MainActivity : AppCompatActivity() {
         if (actionStrId != 0 && listener != null) {
             snackbar.setAction(getString(actionStrId), listener)
         }
+        snackbar.setBackgroundTint(Color.GREEN)
+        snackbar.setTextColor(Color.RED)
         snackbar.show()
         Log.i(TAG, "after Snackbar")
     }
