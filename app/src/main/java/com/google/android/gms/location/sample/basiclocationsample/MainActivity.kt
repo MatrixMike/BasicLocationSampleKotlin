@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.w("ZZZZ: ", "onStart " + Start)
+        Log.w("ZZZZ: ", "onStart $Start")
         if (!checkPermissions()) {
             requestPermissions()
         } else {
@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        Log.w("ZZZZ: ", "onResume " + Resume)
+        Log.w("ZZZZ: ", "onResume $Resume")
 /*        if (!checkPermissions()) {
             requestPermissions()
         } else {
@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        Log.w("ZZZZ: ", "onPause " + Pause)
+        Log.w("ZZZZ: ", "onPause $Pause")
 /*        if (!checkPermissions()) {
             requestPermissions()
         } else {
@@ -131,7 +131,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        Log.w("ZZZZ: ", "onStop " + Stop)
+        Log.w("ZZZZ: ", "onStop $Stop")
 /*        if (!checkPermissions()) {
             requestPermissions()
         } else {
@@ -140,8 +140,8 @@ class MainActivity : AppCompatActivity() {
         Stop++
     }
     override fun onRestart() {
-        super.onStop()
-        Log.w("ZZZZ: ", "onRestart " + Restart)
+        super.onRestart()
+        Log.w("ZZZZ: ", "onRestart $Restart")
 /*        if (!checkPermissions()) {
             requestPermissions()
         } else {
@@ -151,7 +151,7 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onDestroy() {
         super.onDestroy()
-        Log.w("ZZZZ: ", "onDestroy " + Destroy)
+        Log.w("ZZZZ: ", "onDestroy $Destroy")
 /*        if (!checkPermissions()) {
             requestPermissions()
         } else {
@@ -201,7 +201,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     distanceText.text =
                         "Distance : " + ans1[0] + " " + repeaterStrings[1] + " metres \nDistance : " + ans1[0] + " " + repeaterStrings[2] + " metres\n"
-                    // TODO       Log.i(TAG, distanceText.text as String)
+                    // TODO Log.w(TAG, distanceText.text as String)
                     showSnackbar(R.string.permission_rationale, android.R.string.ok)  // TODO fix
                 } else {
                     Log.w(TAG, "getLastLocation:exception", taskLocation.exception)
