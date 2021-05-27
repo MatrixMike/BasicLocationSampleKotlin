@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity() {
 
     private val TAG = "MainActivity"
     private val REQUEST_PERMISSIONS_REQUEST_CODE = 34
-
     /**
      * Provides the entry point to the Fused Location Provider API.
      */
@@ -60,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var longitudeText: TextView
     private lateinit var datetimeStamp: TextView
     private lateinit var distanceText: TextView
-     public var Resume = 0;
+     public var Resume = 0
 
     val startLat = -37.892   // TODO - set radial centre
     val startLong = 144.775    // set these values into an array
@@ -231,7 +230,7 @@ class MainActivity : AppCompatActivity() {
                 grantResults.isEmpty() -> Log.i(TAG, "User interaction was cancelled.")
 
                 // Permission granted.
-                (grantResults[0] == PackageManager.PERMISSION_GRANTED) -> getLastLocation()
+                (grantResults[0] == PERMISSION_GRANTED) -> getLastLocation()
 
                 // Permission denied.
 
@@ -246,7 +245,7 @@ class MainActivity : AppCompatActivity() {
                 // touches or interactions which have required permissions.
                 else -> {
                     showSnackbar(R.string.permission_denied_explanation, R.string.settings,
-                        View.OnClickListener {
+                        {
                             // Build intent that displays the App settings screen.
                             val intent = Intent().apply {
                                 action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
