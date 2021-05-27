@@ -1,18 +1,18 @@
- /*
-  Copyright 2017 Google Inc. All Rights Reserved.
-  <p>
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-  <p>
-  http://www.apache.org/licenses/LICENSE-2.0
-  <p>
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
- */
+/*
+ Copyright 2017 Google Inc. All Rights Reserved.
+ <p>
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ <p>
+ http://www.apache.org/licenses/LICENSE-2.0
+ <p>
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+*/
 
 package com.google.android.gms.location.sample.basiclocationsample
 
@@ -22,7 +22,6 @@ package com.google.android.gms.location.sample.basiclocationsample
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.graphics.Color
 import android.location.Location
@@ -50,6 +49,7 @@ class MainActivity : AppCompatActivity() {
 
     private val TAG = "MainActivity"
     private val REQUEST_PERMISSIONS_REQUEST_CODE = 34
+
     /**
      * Provides the entry point to the Fused Location Provider API.
      */
@@ -59,7 +59,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var longitudeText: TextView
     private lateinit var datetimeStamp: TextView
     private lateinit var distanceText: TextView
-     public var Resume = 0
+    var Resume = 0
+    var Destroy = 0
+    var Stop = 0
+    var Pause = 0
+    var Start = 0
+    var Create = 0
+    var Restart = 0
 
     val startLat = -37.892   // TODO - set radial centre
     val startLong = 144.775    // set these values into an array
@@ -86,20 +92,24 @@ class MainActivity : AppCompatActivity() {
         println(javaObj.size)
 /*        val latitudes = doubleArrayOf(startLat, 1.2, 1.3)
         val longitudes = doubleArrayOf(startLong, 1.2, 1.3)*/
+        Log.w("ZZZZ: ", "onCreate " + Create)
+        Create++
     }
 
     override fun onStart() {
         super.onStart()
-
+        Log.w("ZZZZ: ", "onStart " + Start)
         if (!checkPermissions()) {
             requestPermissions()
         } else {
             getLastLocation()
         }
+        Start++
     }
+
     override fun onResume() {
         super.onResume()
-        Log.w("ZZZZ: ","onResume " + Resume)
+        Log.w("ZZZZ: ", "onResume " + Resume)
 /*        if (!checkPermissions()) {
             requestPermissions()
         } else {
@@ -107,6 +117,49 @@ class MainActivity : AppCompatActivity() {
         }*/
         Resume++
     }
+
+    override fun onPause() {
+        super.onPause()
+        Log.w("ZZZZ: ", "onPause " + Pause)
+/*        if (!checkPermissions()) {
+            requestPermissions()
+        } else {
+            getLastLocation()
+        }*/
+        Pause++
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.w("ZZZZ: ", "onStop " + Stop)
+/*        if (!checkPermissions()) {
+            requestPermissions()
+        } else {
+            getLastLocation()
+        }*/
+        Stop++
+    }
+    override fun onRestart() {
+        super.onStop()
+        Log.w("ZZZZ: ", "onRestart " + Restart)
+/*        if (!checkPermissions()) {
+            requestPermissions()
+        } else {
+            getLastLocation()
+        }*/
+        Restart++
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.w("ZZZZ: ", "onDestroy " + Destroy)
+/*        if (!checkPermissions()) {
+            requestPermissions()
+        } else {
+            getLastLocation()
+        }*/
+        Destroy++
+    }
+
     /**
      * Provides a simple way of getting a device's location and is well suited for
      * applications that do not require a fine-grained location and that do not need location
