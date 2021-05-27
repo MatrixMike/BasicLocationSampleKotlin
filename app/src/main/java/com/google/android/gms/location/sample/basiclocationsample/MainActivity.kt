@@ -60,6 +60,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var longitudeText: TextView
     private lateinit var datetimeStamp: TextView
     private lateinit var distanceText: TextView
+     public var Resume = 0;
+
     val startLat = -37.892   // TODO - set radial centre
     val startLong = 144.775    // set these values into an array
     val vk3rglLat = -37.8865371   // TODO - set radial centre
@@ -96,7 +98,16 @@ class MainActivity : AppCompatActivity() {
             getLastLocation()
         }
     }
-
+    override fun onResume() {
+        super.onResume()
+        Log.w("ZZZZ: ","onResume " + Resume)
+/*        if (!checkPermissions()) {
+            requestPermissions()
+        } else {
+            getLastLocation()
+        }*/
+        Resume++
+    }
     /**
      * Provides a simple way of getting a device's location and is well suited for
      * applications that do not require a fine-grained location and that do not need location
