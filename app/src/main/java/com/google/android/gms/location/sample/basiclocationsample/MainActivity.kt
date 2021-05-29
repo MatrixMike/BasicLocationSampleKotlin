@@ -92,13 +92,13 @@ class MainActivity : AppCompatActivity() {
         println(javaObj.size)
 /*        val latitudes = doubleArrayOf(startLat, 1.2, 1.3)
         val longitudes = doubleArrayOf(startLong, 1.2, 1.3)*/
-        Log.w("ZZZZ: ", "onCreate $Create")
+        Log.w("ZZZZ: ", "1 onCreate $Create")
         Create++
     }
 
     override fun onStart() {
         super.onStart()
-        Log.w("ZZZZ: ", "onStart $Start")
+        Log.w("ZZZZ: ", "2 onStart $Start")
         if (!checkPermissions()) {
             requestPermissions()
         } else {
@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        Log.w("ZZZZ: ", "onResume $Resume")
+        Log.w("ZZZZ: ", "3 onResume $Resume")
 /*        if (!checkPermissions()) {
             requestPermissions()
         } else {
@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        Log.w("ZZZZ: ", "onPause $Pause")
+        Log.w("ZZZZ: ", "4 onPause $Pause")
 /*        if (!checkPermissions()) {
             requestPermissions()
         } else {
@@ -131,7 +131,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        Log.w("ZZZZ: ", "onStop $Stop")
+        Log.w("ZZZZ: ", "5 onStop $Stop")
 /*        if (!checkPermissions()) {
             requestPermissions()
         } else {
@@ -142,7 +142,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRestart() {
         super.onRestart()
-        Log.w("ZZZZ: ", "onRestart $Restart")
+        Log.w("ZZZZ: ", "7 onRestart $Restart")
 /*        if (!checkPermissions()) {
             requestPermissions()
         } else {
@@ -153,7 +153,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.w("ZZZZ: ", "onDestroy $Destroy")
+        Log.w("ZZZZ: ", "6 onDestroy $Destroy")
 /*        if (!checkPermissions()) {
             requestPermissions()
         } else {
