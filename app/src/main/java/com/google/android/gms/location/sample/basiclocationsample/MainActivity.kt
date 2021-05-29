@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         println(javaObj.size)
 /*        val latitudes = doubleArrayOf(startLat, 1.2, 1.3)
         val longitudes = doubleArrayOf(startLong, 1.2, 1.3)*/
-        Log.w("ZZZZ: ", "onCreate " + Create)
+        Log.w("ZZZZ: ", "onCreate $Create")
         Create++
     }
 
@@ -139,6 +139,7 @@ class MainActivity : AppCompatActivity() {
         }*/
         Stop++
     }
+
     override fun onRestart() {
         super.onRestart()
         Log.w("ZZZZ: ", "onRestart $Restart")
@@ -149,6 +150,7 @@ class MainActivity : AppCompatActivity() {
         }*/
         Restart++
     }
+
     override fun onDestroy() {
         super.onDestroy()
         Log.w("ZZZZ: ", "onDestroy $Destroy")
@@ -201,7 +203,8 @@ class MainActivity : AppCompatActivity() {
                     }
                     distanceText.text =
                         "Distance : " + ans1[0] + " " + repeaterStrings[1] + " metres \nDistance : " + ans1[0] + " " + repeaterStrings[2] + " metres\n"
-                    // TODO Log.w(TAG, distanceText.text as String)
+                    // TODO Log.w("ZZZZ:", distanceText.text as String)
+                    Log.w("ZZZZ: ", "Distance = ")
                     showSnackbar(R.string.permission_rationale, android.R.string.ok)  // TODO fix
                 } else {
                     Log.w(TAG, "getLastLocation:exception", taskLocation.exception)
@@ -252,7 +255,7 @@ class MainActivity : AppCompatActivity() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_COARSE_LOCATION)) {
             // Provide an additional rationale to the user. This would happen if the user denied the
             // request previously, but didn't check the "Don't ask again" checkbox.
-            Log.i(TAG, "Displaying permission rationale to provide additional context.")
+            Log.w("ZZZZ:", "Displaying permission rationale to provide additional context.")
             showSnackbar(R.string.permission_rationale, android.R.string.ok) {
                 // Request permission
                 startLocationPermissionRequest()
@@ -262,7 +265,7 @@ class MainActivity : AppCompatActivity() {
             // Request permission. It's possible this can be auto answered if device policy
             // sets the permission in a given state or the user denied the permission
             // previously and checked "Never ask again".
-            Log.i(TAG, "Requesting permission")
+            Log.w("ZZZZ:", "Requesting permission")
             startLocationPermissionRequest()
         }
     }
