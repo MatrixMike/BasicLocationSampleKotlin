@@ -6,8 +6,9 @@ import java.util.List;
 public class Repeater {
 
     private static final Object TAG = 666;
-    String name;
-    Double latitude;
+    // String name;
+    final Double latitude;
+    final String name;
 
     Repeater(String nameArg, Double latitudeArg) {
 
