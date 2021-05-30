@@ -59,18 +59,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var longitudeText: TextView
     private lateinit var datetimeStamp: TextView
     private lateinit var distanceText: TextView
-    var Resume = 0
-    var Destroy = 0
-    var Stop = 0
-    var Pause = 0
-    var Start = 0
-    var Create = 0
-    var Restart = 0
+    private var resume = 0
+    private var destroy = 0
+    private var stop = 0
+    private var pause = 0
+    private var start = 0
+    private var create = 0
+    private var restart = 0
 
-    val startLat = -37.892   // TODO - set radial centre
-    val startLong = 144.775    // set these values into an array
-    val vk3rglLat = -37.8865371   // TODO - set radial centre
-    val vk3rglLong = 144.2694973    // set these values into an array  Mt. Anakie
+    private val startLat = -37.892   // TODO - set radial centre
+    private val startLong = 144.775    // set these values into an array
+    private val vk3rglLat = -37.8865371   // TODO - set radial centre
+    private val vk3rglLong = 144.2694973    // set these values into an array  Mt. Anakie
     // such that the elements can be used sequentially that can be used to compare with radial centre
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,74 +92,74 @@ class MainActivity : AppCompatActivity() {
         println(javaObj.size)
 /*        val latitudes = doubleArrayOf(startLat, 1.2, 1.3)
         val longitudes = doubleArrayOf(startLong, 1.2, 1.3)*/
-        Log.w("ZZZZ: ", "1 onCreate $Create")
-        Create++
+        Log.w("ZZZZ: ", "1 onCreate $create")
+        create++
     }
 
     override fun onStart() {
         super.onStart()
-        Log.w("ZZZZ: ", "2 onStart $Start")
+        Log.w("ZZZZ: ", "2 onStart $start")
         if (!checkPermissions()) {
             requestPermissions()
         } else {
             getLastLocation()
         }
-        Start++
+        start++
     }
 
     override fun onResume() {
         super.onResume()
-        Log.w("ZZZZ: ", "3 onResume $Resume")
+        Log.w("ZZZZ: ", "3 onResume $resume")
 /*        if (!checkPermissions()) {
             requestPermissions()
         } else {
             getLastLocation()
         }*/
-        Resume++
+        resume++
     }
 
     override fun onPause() {
         super.onPause()
-        Log.w("ZZZZ: ", "4 onPause $Pause")
+        Log.w("ZZZZ: ", "4 onPause $pause")
 /*        if (!checkPermissions()) {
             requestPermissions()
         } else {
             getLastLocation()
         }*/
-        Pause++
+        pause++
     }
 
     override fun onStop() {
         super.onStop()
-        Log.w("ZZZZ: ", "5 onStop $Stop")
+        Log.w("ZZZZ: ", "5 onStop $stop")
 /*        if (!checkPermissions()) {
             requestPermissions()
         } else {
             getLastLocation()
         }*/
-        Stop++
+        stop++
     }
 
     override fun onRestart() {
         super.onRestart()
-        Log.w("ZZZZ: ", "7 onRestart $Restart")
+        Log.w("ZZZZ: ", "7 onRestart $restart")
 /*        if (!checkPermissions()) {
             requestPermissions()
         } else {
             getLastLocation()
         }*/
-        Restart++
+        restart++
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        Log.w("ZZZZ: ", "6 onDestroy $Destroy")
+        Log.w("ZZZZ: ", "6 onDestroy $destroy")
 /*        if (!checkPermissions()) {
             requestPermissions()
         } else {
             getLastLocation()
         }*/
-        Destroy++
+        destroy++
     }
 
     /**
@@ -278,6 +278,7 @@ class MainActivity : AppCompatActivity() {
         permissions: Array<String>,
         grantResults: IntArray
     ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         Log.i(TAG, "onRequestPermissionResult")
         if (requestCode == REQUEST_PERMISSIONS_REQUEST_CODE) {
             when {
@@ -300,16 +301,17 @@ class MainActivity : AppCompatActivity() {
                 // when permissions are denied. Otherwise, your app could appear unresponsive to
                 // touches or interactions which have required permissions.
                 else -> {
-                    showSnackbar(R.string.permission_denied_explanation, R.string.settings,
-                        {
-                            // Build intent that displays the App settings screen.
-                            val intent = Intent().apply {
-                                action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-                                data = Uri.fromParts("package", APPLICATION_ID, null)
-                                flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                            }
-                            startActivity(intent)
-                        })
+                    showSnackbar(
+                        R.string.permission_denied_explanation, R.string.settings
+                    ) {
+                        // Build intent that displays the App settings screen.
+                        val intent = Intent().apply {
+                            action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                            data = Uri.fromParts("package", APPLICATION_ID, null)
+                            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                        }
+                        startActivity(intent)
+                    }
                 }
             }
         }

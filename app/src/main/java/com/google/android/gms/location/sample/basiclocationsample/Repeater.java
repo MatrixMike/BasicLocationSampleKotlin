@@ -20,7 +20,7 @@ public class Repeater {
         allRepeaters.add (
                 new Repeater (
                         "vk3rgl",
-                        2.3));
+                        2.4));
         allRepeaters.add (
                 new Repeater (
                         "vk3rglx",
