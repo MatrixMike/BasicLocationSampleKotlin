@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
             print(x)
         }
         print(array[2])
-        val javaObj = createRepeaterList()
+        val javaObj = createRepeaterList()   // TODO in onCreate can initialise the list
         println(javaObj.size)
 /*        val latitudes = doubleArrayOf(startLat, 1.2, 1.3)
         val longitudes = doubleArrayOf(startLong, 1.2, 1.3)*/
